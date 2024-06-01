@@ -1,72 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FlexiNav</title>
-  <style>
-    header {
-      background-color: #333;
-      color: #fff;
-      padding: 10px;
-      display: flex;
-      justify-content: space-between;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FlexNav-bar with Toggle</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
 
-    nav ul {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-    }
+.flex-nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: #333;
+  padding: 10px;
+}
 
-    nav ul li {
-      margin-right: 20px;
-    }
+.nav-items {
+  display: none;
+  list-style: none;
+  padding: 0;
+}
 
-    nav ul li a {
-      color: #fff;
-      text-decoration: none;
-    }
+.nav-items li {
+  margin-right: 20px;
+}
 
-    .menu-toggle {
-      display: none;
-      cursor: pointer;
-    }
+.nav-items li:last-child {
+  margin-right: 0;
+}
 
-    @media (max-width: 768px) {
-      nav ul {
-        display: none;
-        flex-direction: column;
-      }
-      .menu-toggle {
-        display: block;
-      }
-    }
-  </style>
+.nav-items a {
+  text-decoration: none;
+  color: white;
+}
+
+.toggle-btn {
+  background-color: #333;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .flex-nav {
+    justify-content: flex-start;
+  }
+  
+  .nav-items {
+    display: flex;
+  }
+}
+</style>
 </head>
 <body>
-  <header>
-    <div class="menu-toggle" onclick="toggleMenu()">Menu</div>
-    <nav id="navbar">
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Services</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+<nav class="flex-nav">
+  <button class="toggle-btn" onclick="toggleNav()">Toggle</button>
+  <ul class="nav-items" id="navItems">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Services</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+</nav>
 
-  <script>
-    function toggleMenu() {
-      var nav = document.getElementById("navbar");
-      if (nav.style.display === "flex") {
-        nav.style.display = "none";
-      } else {
-        nav.style.display = "flex";
-      }
-    }
-  </script>
+<script>
+function toggleNav() {
+  var navItems = document.getElementById("navItems");
+  navItems.style.display = navItems.style.display === "none" ? "flex" : "none";
+}
+</script>
 </body>
 </html>
