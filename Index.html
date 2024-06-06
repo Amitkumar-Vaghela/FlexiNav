@@ -1,76 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FlexNav-bar with Toggle</title>
-<style>
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FlexNav-bar</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      transition: background-color 0.5s;
+    }
 
-.flex-nav {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  background-color: #333;
-  padding: 10px;
-}
+   .flex-nav {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      background-color: #333;
+      padding: 10px;
+      transition: background-color 0.5s;
+    }
 
-.nav-items {
-  display: none;
-  list-style: none;
-  padding: 0;
-}
+   .nav-items {
+      display: none;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
 
-.nav-items li {
-  margin-right: 20px;
-}
+   .nav-items li {
+      margin-right: 20px;
+    }
 
-.nav-items li:last-child {
-  margin-right: 0;
-}
+   .nav-items li:last-child {
+      margin-right: 0;
+    }
 
-.nav-items a {
-  text-decoration: none;
-  color: white;
-}
+   .nav-items a {
+      text-decoration: none;
+      color: white;
+      transition: color 0.5s;
+    }
 
-.toggle-btn {
-  background-color: #333;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
+   .nav-items a:hover {
+      color: #ccc;
+    }
 
-@media (min-width: 768px) {
-  .flex-nav {
-    justify-content: flex-start;
-  }
-  
-  .nav-items {
-    display: flex;
-  }
-}
-</style>
+   .toggle-btn {
+      background-color: #333;
+      color: white;
+      border: none;
+      cursor: pointer;
+      padding: 10px;
+      transition: background-color 0.5s, color 0.5s;
+    }
+
+   .toggle-btn:hover {
+      background-color: #444;
+    }
+
+   .toggle-btn:focus {
+      outline: none;
+    }
+
+   .mode-toggle-btn {
+      background-color: #333;
+      color: white;
+      border: none;
+      cursor: pointer;
+      padding: 10px;
+      transition: background-color 0.5s, color 0.5s;
+    }
+
+   .mode-toggle-btn:hover {
+      background-color: #444;
+    }
+
+   .mode-toggle-btn:focus {
+      outline: none;
+    }
+
+    @media (min-width: 768px) {
+     .flex-nav {
+        justify-content: flex-start;
+      }
+      
+     .nav-items {
+        display: flex;
+      }
+      
+     .toggle-btn {
+        display: none;
+      }
+    }
+
+    /* Night mode styles */
+   .night-mode {
+      background-color: #333;
+    }
+
+   .night-mode.flex-nav {
+      background-color: #333;
+    }
+
+   .night-mode.nav-items a {
+      color: white;
+    }
+
+   .night-mode.toggle-btn {
+      background-color: #333;
+      color: white;
+    }
+
+   .night-mode.mode-toggle-btn {
+      background-color: #333;
+      color: white;
+    }
+
+    /* Day mode styles */
+   .day-mode {
+      background-color: #f9f9f9;
+    }
+
+   .day-mode.flex-nav {
+      background-color: #f0f0f0;
+    }
+
+   .day-mode.nav-items a {
+      color: #333;
+    }
+
+   .day-mode.toggle-btn {
+      background-color: #f0f0f0;
+      color: #333;
+    }
+
+   .day-mode.mode-toggle-btn {
+      background-color: #f0f0f0;
+      color: #333;
+    }
+  </style>
 </head>
-<body>
-<nav class="flex-nav">
-  <button class="toggle-btn" onclick="toggleNav()">Menu</button>
-  <ul class="nav-items" id="navItems">
-    <li><a href="#">Home</a></li>
-    <li><a href="#">About</a></li>
-    <li><a href="#">Services</a></li>
-    <li><a href="#">Contact</a></li>
-  </ul>
-</nav>
+<body class="day-mode">
+  <nav class="flex-nav">
+    <button class="toggle-btn" onclick="toggleNav()">Menu</button>
+    <ul class="nav-items" id="navItems">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <button class="mode-toggle-btn" onclick="toggleMode()"><span id="mode-icon">☀️</span></button>
+  </nav>
 
-<script>
-function toggleNav() {
-  var navItems = document.getElementById("navItems");
-  navItems.style.display = navItems.style.display === "none" ? "flex" : "none";
-}
-</script>
+  <script>
+    function toggleNav() {
+      var navItems = document.getElementById("navItems");
+      navItems.style.display = navItems.style.display === "none"? "flex" : "none";
+    }
+
+    function toggleMode() {
+      var body = document.body;
+      body.classList.toggle("day-mode");
+      body.classList.toggle("night-mode");
+      var modeIcon = document.getElementById("mode-icon");
+      modeIcon.textContent = modeIcon.textContent === "☀️"? "🌕" : "☀️";
+    }
+  </script>
 </body>
 </html>
